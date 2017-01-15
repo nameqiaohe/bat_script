@@ -1,0 +1,17 @@
+@echo off & color 0A
+set/p a=是要设置自动关机吗(Y/N): 
+if /i "%a%"=="y" (call :SET_SHOUTDOWN)
+if /i "%a%"=="n" (call :UNSET_SHUTDOWN)
+	
+:SET_SHOUTDOWN
+	set/p seconds=你想设置在多长时间后自动关机:
+	shutdown -s -t %seconds%
+	echo 系统将会在 %seconds% 秒后关机...
+	pause
+	exit
+
+:UNSET_SHUTDOWN
+	shutdown -a
+	echo 已取消之前设置的自动关机任务
+	pause
+	exit
